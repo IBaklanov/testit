@@ -19,7 +19,7 @@
       }
       function getTDIDFromURL() {
         var gjson ;
-        gjson = getJSON('https://match.adsrvr.org/track/rid?ttd_pid=prebid&fmt=json') ;
+        gjson = getJSON('https://match.adsrvr.org/track/rid?ttd_pid=prebid&fmt=json&rnd=' + getRandomString()) ;
         var div = document.getElementById('tdids');
         div.innerHTML += gjson + '<BR />';
       }
@@ -27,16 +27,21 @@
         var div = document.getElementById('tdids');
         div.innerHTML += document.cookie + '<BR />';
       }
+      function getRandomString() {
+        return r = Math.random().toString(36).substring(7);
+      }
       
-      
+      function addPixel() {
+        var x = document.createElement("IMG");
+        x.setAttribute("src", "https://match.adsrvr.org/track/rid?ttd_pid=prebid&fmt=img&rnd=" + getRandomString() );
+        x.setAttribute("width", "1");
+        x.setAttribute("height", "1");
+        document.body.appendChild(x);
+      }
       
     </script>
   </head>
   <body>
-    Requesting TDID from https://match.adsrvr.org/track/rid?ttd_pid=prebid&fmt=json
-    <img src="https://match.adsrvr.org/track/rid?ttd_pid=prebid&fmt=img" />
-    <!--a href = "#" onClick="getTDIDFromCookies();">Show my TDID</a>
-    <BR /-->
     <a href = "#" onClick="getTDIDFromURL();return false;">Sync my TDID</a>
     <BR />
     <div id='tdids'>
