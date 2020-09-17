@@ -7,11 +7,12 @@
 
           resp  = '' ;
           xmlHttp = new XMLHttpRequest();
-
+          xmlHttp.withCredentials = true;
           if(xmlHttp != null)
           {
               xmlHttp.open( "GET", url, false );
               xmlHttp.send( null );
+            
               resp = xmlHttp.responseText;
           }
 
