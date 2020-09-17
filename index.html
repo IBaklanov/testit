@@ -7,22 +7,48 @@
 
           resp  = '' ;
           xmlHttp = new XMLHttpRequest();
-
+          xmlHttp.withCredentials = true;
           if(xmlHttp != null)
           {
               xmlHttp.open( "GET", url, false );
               xmlHttp.send( null );
+            
               resp = xmlHttp.responseText;
           }
 
           return resp ;
       }
-      var gjson ;
-      gjson = getJSON('https://match.adsrvr.org/track/rid?ttd_pid=openx&fmt=json') ;
-      document.write(gjson);
+      function getTDIDFromURL() {
+        var gjson ;
+        gjson = getJSON('https://match.adsrvr.org/track/rid?ttd_pid=prebid&fmt=json&rnd=' + getRandomString()) ;
+        var div = document.getElementById('tdids');
+        div.innerHTML += gjson + '<BR />';
+      }
+      function getTDIDFromCookies() {
+        var div = document.getElementById('tdids');
+        div.innerHTML += document.cookie + '<BR />';
+      }
+      function getRandomString() {
+        return r = Math.random().toString(36).substring(7);
+      }
+      
+      function addPixel() {
+        var x = document.createElement("IMG");
+        x.setAttribute("src", "https://match.adsrvr.org/track/rid?ttd_pid=prebid&fmt=img&rnd=" + getRandomString() );
+        x.setAttribute("width", "1");
+        x.setAttribute("height", "1");
+        document.body.appendChild(x);
+        var div = document.getElementById('tdids');
+        div.innerHTML += 'Pixel added<BR />';
+      }
+      
     </script>
   </head>
   <body>
-    Requesting TDID from https://match.adsrvr.org/track/rid?ttd_pid=openx&fmt=json
+    <a href = "#" onClick="getTDIDFromURL();return false;">Get TDID from match.adsrvr.org</a>
+    <div id='tdids'>
+    TDIDs:
+    <BR />
+    </div>
   </body>
 </html>
