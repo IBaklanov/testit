@@ -19,7 +19,7 @@
       }
       function getTDIDFromURL() {
         var gjson ;
-        gjson = getJSON('https://match.adsrvr.org/track/rid?ttd_pid=openx&fmt=json') ;
+        gjson = getJSON('https://match.adsrvr.org/track/rid?ttd_pid=prebid&fmt=json') ;
         var div = document.getElementById('tdids');
         div.innerHTML += gjson + '<BR />';
       }
@@ -33,8 +33,8 @@
     </script>
   </head>
   <body>
-    Requesting TDID from https://match.adsrvr.org/track/rid?ttd_pid=openx&fmt=json
-    <img src="https://match.adsrvr.org/track/rid?ttd_pid=openx&fmt=img" />
+    Requesting TDID from https://match.adsrvr.org/track/rid?ttd_pid=prebid&fmt=json
+    <img src="https://match.adsrvr.org/track/rid?ttd_pid=prebid&fmt=img" />
     <!--a href = "#" onClick="getTDIDFromCookies();">Show my TDID</a>
     <BR /-->
     <a href = "#" onClick="getTDIDFromURL();return false;">Sync my TDID</a>
