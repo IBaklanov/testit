@@ -37,12 +37,18 @@
         x.setAttribute("width", "1");
         x.setAttribute("height", "1");
         document.body.appendChild(x);
+        var div = document.getElementById('tdids');
+        div.innerHTML += 'Pixel added<BR />';
       }
       
     </script>
   </head>
   <body>
-    <a href = "#" onClick="getTDIDFromURL();return false;">Sync my TDID</a>
+    <a href = "#" onClick="getTDIDFromURL();return false;">Step 1: Read TDID from match.adsrvr.org</a>
+    <BR />
+    <a href = "#" onClick="addPixel();return false;">Step 2: Add TTD pixel</a>
+    <BR />
+    <a href = "#" onClick="getTDIDFromURL();return false;">Step 3: Read TDID from match.adsrvr.org</a>
     <BR />
     <div id='tdids'>
     TDIDs:
